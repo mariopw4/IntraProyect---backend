@@ -4,7 +4,7 @@ const SEED = require('../config/config').SEED;
 const jwt = require('jsonwebtoken');
 
 module.exports.verificarToken = function(req, res, next) {
-    let token = req.query.token;
+    let token = req.get('token');
     jwt.verify(token, SEED, (err, decoded) => {
         if (err) {
             return res.status(401).json({
